@@ -1,6 +1,5 @@
 "use client";
 import { useProducts } from "../_api/useProducts";
-import Image from "next/image";
 import { ProductItem } from "../_components/ProductItem";
 
 export default function StorePage() {
