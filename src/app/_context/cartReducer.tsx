@@ -27,6 +27,6 @@ export function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
           : item
       );
     default:
-      throw new Error(`Unhandled action type: ${(action as CartAction).type}`);
+      return state;
   }
 }

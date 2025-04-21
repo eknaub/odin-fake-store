@@ -4,6 +4,9 @@ import Image from "next/image";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity } = useCartContext();
+  const totalPrice = cart
+    .reduce((total, item) => total + item.price * item.quantity, 0)
+    .toFixed(2);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100 text-gray-800">
@@ -31,7 +34,6 @@ export default function CartPage() {
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="cursor-pointer px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
-                      disabled={item.quantity <= 1}
                     >
                       -
                     </button>
@@ -56,12 +58,7 @@ export default function CartPage() {
             ))}
           </ul>
           <div className="mt-6 flex justify-between items-center">
-            <p className="text-lg font-bold">
-              Total: $
-              {cart
-                .reduce((total, item) => total + item.price * item.quantity, 0)
-                .toFixed(2)}
-            </p>
+            <p className="text-lg font-bold">Total: ${totalPrice}</p>
             <button className="cursor-pointer px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
               Checkout
             </button>
